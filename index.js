@@ -1,5 +1,10 @@
 const batteryBatches = [4, 5, 3, 4, 4, 6, 5];
 
+const totalBatteries = batteryBatches.reduce(function(total, battery){
+    return total += battery
+  }, 0)
+
+
 const monologueLines = [
   'Who are you talking to right now?',
   'Who is it you think you see?',
@@ -16,3 +21,16 @@ const monologueLines = [
   'No.',
   'I am the one who knocks!'
 ];
+
+// Need to output a 'map' of all lines in "'word count': quantity" format {'7': 2, '9': 1}
+// const wordCountOutput = {}
+var wordCountMap = monologueLines.reduce(function(wordCountOutput, currentValue, currentIndex, array){
+  // wordCountOutput[`${currentValue.split(" ").length}`] + 1
+  let wordCount = currentValue.split(" ").length
+  if (wordCount in wordCountOutput) {
+    wordCountOutput[wordCount] += 1
+  } else {
+    wordCountOutput[wordCount] = 1
+  }
+  return wordCountOutput
+}, {})
